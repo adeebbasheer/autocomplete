@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ajax Practise</title>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+</head>
+<body>
+<div class="container">
+	<div class="main center-block">
+		<form class="form-horizontal">
+			<div class="form-group">
+				<label class="col-md-2 control-label" for="first_name">First Name :</label>
+				<div class="col-md-6">
+					<input type="text" name="first_name" id="first_name" class="form-control">
+				</div>	
+			</div>
+			<div class="form-group">
+				<label class="col-md-2 control-label" for="last_name">Last Name :</label>
+				<div class="col-md-6">
+					<input type="text" name="last_name" id="last_name" class="form-control">
+				</div>	
+			</div>
+			<div class="form-group">
+				<label class="col-md-2 control-label" for="email">Email :</label>
+				<div class="col-md-6">
+					<input type="email" name="email" id="email" class="form-control">
+				</div>	
+			</div>
+			<div class="form-group">
+				<label class="col-md-2 control-label" for="gender">Gender :</label>
+				<div class="col-md-6">
+					<select class="form-control" name="gender" id="gender">
+						<option value="male">Male</option>
+						<option value="female">Female</option>
+					</select>
+				</div>	
+			</div>
+			<div class="form-group">
+				<label class="col-md-2 control-label" for="phone">Phone :</label>
+				<div class="col-md-6">
+					<input type="text" name="phone" id="phone" class="form-control">
+				</div>	
+			</div>
+			<div class="form-group">
+				<label class="col-md-2 control-label" for="address">Address :</label>
+				<div class="col-md-6">
+					<textarea name="address" id="address" class="form-control" rows="4"></textarea>
+				</div>	
+			</div>
+			<div class="form-group">
+				<input type="button" id="button" value="Submit" class="btn btn-default btn-lg col-md-offset-4">
+			</div>
+		</form>
+	</div>
+	<div class="main text-center">
+		<div id="result"></div>
+	</div>
+</div>
+</body>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#button').click(function(event) {
+			event.preventDefault;
+			var first_name = $('#first_name').val();
+			var last_name = $('#last_name').val();
+			var email = $('#email').val();
+			var gender = $('#gender').val();
+			var phone = $('#phone').val();
+			var address = $('#address').val();
+
+			//console.log(first_name, last_name, email, gender, phone, address);
+			$.ajax({
+				url: 'server.php',
+				type: 'POST',
+				data: {
+					firstname: first_name,
+					lastname: last_name,
+					email: email,
+					gend: gender,
+					ph: phone,
+					addres: address
+				},
+				dataType: 'json',
+				success: function(data) {
+					// $('.result').text(data);
+					// console.log(data);
+					$.each(data, function(key, value) {
+						console.log(data[key]);
+						$('#result').append("<strong>"+data[key]+"</strong><br/>");
+					})
+				}
+			});
+		});
+	});
+</script>
+
+</html>

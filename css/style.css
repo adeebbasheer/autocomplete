@@ -1,0 +1,28 @@
+.col-md-4 {
+	margin-top: 30px;
+}
+.ulli {
+	position: absolute;
+		left: -390px;
+		top: 34px;
+	width: 32%;
+}
+
+ul {
+	list-style: none;
+}
+
+.bg {
+	background: lightgrey;
+}
+
+ul li:hover {
+	background: lightgrey;
+}
+
+.ul li {
+	border-bottom: 1px solid grey;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	padding-left: 15px;
+}
